@@ -9,6 +9,10 @@ package chessnt;
  * bad at chess? play this, your opponent won't know what's going on and neither
  * will you!
  * 
+ * Note: this is not an online multiplayer game, nor does AI support.
+ * Therefore to play it you require a second human in the room to do the opposing
+ * turn. this is because I am lazy and don't want to make a chess AI.
+ * 
  * @author Adam Belski
  * @version 1.0.0
  * @since 5-Jun-2023
