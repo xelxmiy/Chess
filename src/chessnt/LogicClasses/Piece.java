@@ -1,4 +1,4 @@
-package chessnt;
+package chessnt.LogicClasses;
 
 /**
  * Abstract <code>Piece</code> class representing a Chessn't piece. 

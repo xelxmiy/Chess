@@ -1,6 +1,8 @@
 /** Required package class namespace */
 package chessnt;
 
+import javax.swing.JFrame;
+import chessnt.LogicClasses.*;
 /**
  * Chessnt - Chessn't
  * it's not chess!
@@ -14,18 +16,21 @@ package chessnt;
  * turn. this is because I am lazy and don't want to make a chess AI.
  * 
  * @author Adam Belski
- * @version 1.0.0
+ * @version 1.0.2
  * @since 5-Jun-2023
 */
 public class Chessnt
 {
-
+    public static GameBoard board;
+    
+    private static final int BOARD_SIZE = 8;
+    
     /**
      * Main method for the project
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        
+        board = new GameBoard(BOARD_SIZE);
+        JFrame frame = new GameFrame();    
     }
 }

@@ -1,14 +1,13 @@
-package chessnt;
+package chessnt.LogicClasses;
 /**
- *
  * @author Adam Belski
- * @version 1.0.0
+ * @version 1.1.0
  * @since 26-Apr-2023
  *
  */
 public class Matrix {
 
-    private boolean[][] gameBoard;
+    private Piece[][] gameBoard;
 
     /** creates a gameBoard with a custom size
      *
@@ -16,7 +15,7 @@ public class Matrix {
      * @param columns number of columns 
      */
     public Matrix(int rows, int columns) {  
-        gameBoard = new boolean[rows][columns];
+        gameBoard = new Piece[rows][columns];
     }
 
     /**
@@ -25,7 +24,6 @@ public class Matrix {
      * @param size side length of the square
      */
     public Matrix(int size) {
-        //tf do you mean this must be first statement in constructor, why??
         this(size, size);
     }
 
@@ -48,25 +46,25 @@ public class Matrix {
     }
 
     /**
-     * gets the value at the specified row and column of the matrix
+     * gets the piece at the specified row and column of the matrix
      *
      * @param row row of value to get
      * @param column column of value to get
      * @return value at the row and column
      */
-    public boolean get(int row, int column) {
+    public Piece get(int row, int column) {
         return gameBoard[row][column];
     }
 
     /**
-     * sets thee value of a cell in the matrix to the given state
+     * sets thee piece at a cell in the matrix to the given state
      *
      * @param row row of cell to change
      * @param column column of cell to change
-     * @param state state to set the cell to
+     * @param piece state to set the cell to
      */
-    public void set(int row, int column, boolean state) {
-        gameBoard[row][column] = state;
+    public void set(int row, int column, Piece piece) {
+        gameBoard[row][column] = piece;
     }
 
 }
