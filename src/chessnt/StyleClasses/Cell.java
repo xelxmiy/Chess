@@ -1,13 +1,16 @@
 package chessnt.StyleClasses;
 
+import static chessnt.Chessnt.labelHeight;
+import static chessnt.Chessnt.labelWidth;
 import javax.swing.JLabel;
 
 /**
  * @author Adam Belski
- * @version 1.0.0
+ * @version 1.0.1
  * @since 7-Jun-2023
  */
 public class Cell extends JLabel {
+
     /**
      * constructor for LifeLabels inside of a Matrix
      *
@@ -19,8 +22,12 @@ public class Cell extends JLabel {
         super();
         this.setBorder(StyleManager.BORDER);
         this.setOpaque(true);
-        
-        if(isLight) this.setBackground(StyleManager.lightCell);
-        else this.setBackground(StyleManager.darkCell);
+        this.setBounds(labelWidth * column, labelHeight * row,
+                labelWidth, labelHeight);
+        if (isLight) {
+            this.setBackground(StyleManager.lightCell);
+        } else {
+            this.setBackground(StyleManager.darkCell);
+        }
     }
 }

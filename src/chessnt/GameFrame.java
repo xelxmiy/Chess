@@ -1,23 +1,23 @@
 package chessnt;
 
 import chessnt.StyleClasses.StyleManager;
+import java.awt.Component;
 
 /** The Place where the magic happens. This frame contains the board the game is
  * played on. 
  * 
  * @author Adam Belski
  * @since 07-Jun-2023
- * @version 1.0.0
+ * @version 1.0.2
  */
 public class GameFrame extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form GameFrame
      */
     public GameFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setVisible(true);
     }
 
     /**
@@ -120,6 +120,27 @@ public class GameFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
-    private javax.swing.JPanel gameboardPanel;
+    public static javax.swing.JPanel gameboardPanel;
     // End of variables declaration//GEN-END:variables
+        /** give <code>gamePabel</code> a component
+     * 
+     * @param c component to add to the gamePanel
+     */
+    public static void giveComponentToGameBoardPanel(Component c) {
+        gameboardPanel.add(c);
+    }
+    /** gets the width of the gameboard panel
+     * 
+     * @return returns the width of the <code>gameboardPanel</code>
+     */
+    public static int getGameBoardPanelWidth() {
+        return gameboardPanel.getX();
+    }
+    /** gets the length of the gameboard panel
+     * 
+     * @return returns the length of the <code>gameboardPanel</code>
+     */
+    public static int getGameBoardPanelLength() {
+        return gameboardPanel.getY();
+    }
 }

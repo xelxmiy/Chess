@@ -19,6 +19,7 @@ public class Serf extends Piece {
     public void Move(int[] location) {
         if (isValidMove(location)) {
             this.position = location;
+            
         }
     }
 
