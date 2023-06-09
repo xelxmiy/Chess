@@ -4,6 +4,7 @@ package chessnt;
 import javax.swing.JFrame;
 import chessnt.LogicClasses.*;
 import chessnt.StyleClasses.Cell;
+import chessnt.chesspieces.Pawn;
 
 /**
  * Chessnt - Chessn't it's not chess! it's also not *not* chess. it's somewhere
@@ -16,7 +17,7 @@ import chessnt.StyleClasses.Cell;
  * this is because I am lazy and don't want to make a chess AI.
  *
  * @author Adam Belski
- * @version 1.1.0
+ * @version 1.1.1
  * @since 5-Jun-2023
  */
 public class Chessnt {
@@ -29,13 +30,12 @@ public class Chessnt {
 
     public static Cell[][] CellList;
 
-    public Piece[] LightPieces = new Piece[Chessnt.BOARD_SIZE ^ 2];
-    public Piece[] DarkPieces = new Piece[Chessnt.BOARD_SIZE ^ 2];
-
     public static int labelWidth;
 
     public static int labelHeight;
-
+    
+    public static Piece currentlySelectedPiece;
+    
     /**
      * Main method for the project
      *
@@ -59,8 +59,12 @@ public class Chessnt {
                 // refer to this label by it's position in the array, which
                 // is also it's position on the gameboard. 
                 {
-                    Cell label = new Cell(r, c, (r + c) % 2 == 0);
-                    CellList[r][c] = label;
+                    Cell cell = new Cell(r, c, (r + c) % 2 == 0);
+                    CellList[r][c] = cell;
+                    if(r == 6) {
+                        int[] p = {r, c};
+                        Pawn pawn = new Pawn(p, true);
+                    }
                 }
                 GameFrame.giveComponentToGameBoardPanel(CellList[r][c]);
             }
