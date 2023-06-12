@@ -12,8 +12,8 @@ import chessnt.StyleClasses.StyleManager;
  */
 public class Pawn extends Piece {
 
-    final int row;
-    final int column;
+    int row;
+    int column;
 
     public Pawn(int[] position, boolean isWhite) {
         super(position, isWhite);
@@ -29,7 +29,21 @@ public class Pawn extends Piece {
 
     @Override
     public void Move(int[] location) {
-        System.out.println(row + ", " + column + " moving to " + location[0] + "," + location[1]);
+        System.out.println("movign!");
+        int locationRow = location[0];
+        int locationColumn = location[1];
+        System.out.println(row + ", " + column + " moving to " + locationRow + "," + locationColumn);
+        Chessnt.board.set(row,column, null);
+        // bet you've never seen a CS30S student write a line like this before!
+        // actually, you probably have, i'm not the only show-off.
+        Chessnt.CellList[row][column].setBackground((row + column) % 2 == 0 ?
+                StyleManager.lightCell : StyleManager.darkCell);
+        Chessnt.board.set(locationRow,locationColumn, this);
+        Chessnt.CellList[locationRow][locationColumn].setBackground(StyleManager.WHITE);
+        Chessnt.currentlySelectedPiece = null;
+        
+        row = locationRow;
+        column = locationColumn;
     }
 
     @Override
