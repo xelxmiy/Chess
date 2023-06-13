@@ -44,29 +44,28 @@ public class Cell extends JLabel {
                 doMouseClick();
             }
         });
-
     }
 
+    /**
+     * Runs on mouse click, changes the currently selected piece or moves the
+     * currently selected piece
+     */
     private void doMouseClick() {
-        System.out.println("cell clicked!");
+        System.out.println(row + "," + column + " clicked");
         int[] p = {row, column};
-        if (Chessnt.currentlySelectedPiece == null
-                && Chessnt.board.get(row, column) != null) {
+        if (Chessnt.currentlySelectedPiece == null) {
             Chessnt.currentlySelectedPiece = Chessnt.board.get(row, column);
+            if (Chessnt.currentlySelectedPiece != null) {
+                this.setBorder(StyleManager.BORDER_SELECTED);
+            }
             return;
         }
+        
         int cspR = Chessnt.currentlySelectedPiece.position[0];
         int cspC = Chessnt.currentlySelectedPiece.position[1];
-
-        try {
-            Chessnt.board.get(cspR, cspC).Move(p);
-        } catch (NullPointerException npe) {
-            System.out.println(Chessnt.board.get(cspR, cspC) == null);
-            System.out.println("p[0]: " + p[0]);
-            System.out.println("p[1]: " + p[1]);
-            System.out.println("cspR: " + cspR);
-            System.out.println("cspC: " + cspC);
-        }
-
+        System.out.println("cspR " + cspR);
+        System.out.println("cspC " + cspC);
+        Chessnt.CellList[cspR][cspC].setBorder(StyleManager.BORDER);
+        Chessnt.currentlySelectedPiece.Move(p);
     }
 }

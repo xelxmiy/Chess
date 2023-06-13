@@ -92,6 +92,10 @@ public class StyleManager {
      * This is the standard border for all objects
      */
     public static final Border BORDER = BorderFactory.createBevelBorder(0);
+    /**
+     * this is the border for the selected piece
+     */
+    public static final Border BORDER_SELECTED = BorderFactory.createBevelBorder(0, new Color(0,255,0), new Color(255,0,0));
 
     /**
      * changes the color scheme of the whole program based on the preset
