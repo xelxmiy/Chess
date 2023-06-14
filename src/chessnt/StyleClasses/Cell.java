@@ -51,21 +51,19 @@ public class Cell extends JLabel {
      * currently selected piece
      */
     private void doMouseClick() {
-        System.out.println(row + "," + column + " clicked");
-        int[] p = {row, column};
         if (Chessnt.currentlySelectedPiece == null) {
             Chessnt.currentlySelectedPiece = Chessnt.board.get(row, column);
             if (Chessnt.currentlySelectedPiece != null) {
                 this.setBorder(StyleManager.BORDER_SELECTED);
             }
             return;
-        }
+        }   
+        int cspR = Chessnt.currentlySelectedPiece.row;
+        int cspC = Chessnt.currentlySelectedPiece.column;
+        System.out.println("cspR: " + cspR);
+        System.out.println("cspC: " + cspC);
         
-        int cspR = Chessnt.currentlySelectedPiece.position[0];
-        int cspC = Chessnt.currentlySelectedPiece.position[1];
-        System.out.println("cspR " + cspR);
-        System.out.println("cspC " + cspC);
         Chessnt.CellList[cspR][cspC].setBorder(StyleManager.BORDER);
-        Chessnt.currentlySelectedPiece.Move(p);
+        Chessnt.currentlySelectedPiece.Move(row, column);
     }
 }

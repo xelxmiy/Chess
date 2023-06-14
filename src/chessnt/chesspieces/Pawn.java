@@ -13,56 +13,41 @@ import chessnt.StyleClasses.StyleManager;
  */
 public class Pawn extends Piece {
 
-    int row;
-    int column;
+    int[][] validLightMoves = {{-1, 0}, {-2, 0}};
+    int[][] validDarkMoves = {{1, 0}, {2, 0}};
+    
+    public Pawn(int row, int column, boolean isWhite) {
+        super(row, column , isWhite);
 
-    int[][] validLightMoves = {{-1, 0}, {-2, 0}, {-1, 1}, {-1, -1}};
-    int[][] validDarkMoves = {{1, 0}, {2, 0}, {1, -1}, {1, 1}};
-
-    public Pawn(int[] position, boolean isWhite) {
-        super(position, isWhite);
-
-        this.row = position[0];
-        this.column = position[1];
+        this.row = row;
+        this.column = column;
 
         System.out.println("new serf being created at + " + row + "," + column);
         Chessnt.CellList[row][column].setBackground(StyleManager.WHITE);
-        Chessnt.board.set(row, column, this); // this is fine as this is the last
-        //line and the serf peice is already fully constructed
     }
-
+    @Override
     /**
      * Logic for moving the pieces.
      *
-     * @param location where to move this piece
+     * @param moveRow the row of the location to move the piece
+     * @param moveColumn the column of the location to move the piece
      */
-    @Override
-    //having this class be in the Piece class makes it not work for some reason??
-    //so each piece is going to have this same code... why?? 
-    //TODO: figure it out and fix it so i don't reuse the same code ~8 times
-    public void Move(int[] location) {
-        if (isValidMove(location)) {
-
-            int locationRow = location[0];
-            int locationColumn = location[1];
+    public void Move(int moveRow, int moveColumn) {
+        if (isValidMove(moveRow, moveColumn)) {
 
             Chessnt.board.set(row, column, null);
 
-            // bet you've never seen a CS30S student write a line like this before!
-            // actually, you probably have, i'm not the only show-off.
             Chessnt.CellList[row][column].setBackground((row + column) % 2 == 0
                     ? StyleManager.lightCell : StyleManager.darkCell);
 
-            Chessnt.board.set(locationRow, locationColumn, this);
+            Chessnt.board.set(moveRow, moveColumn, this);
 
-            Chessnt.CellList[locationRow][locationColumn].setBackground(StyleManager.WHITE);
+            Chessnt.CellList[moveRow][moveColumn].setBackground(StyleManager.WHITE);
 
             Chessnt.currentlySelectedPiece = null;
 
-            row = locationRow;
-            column = locationColumn;
-
-            position = location;
+            row = moveRow;
+            column = moveColumn;
         }
     }
 
@@ -74,7 +59,19 @@ public class Pawn extends Piece {
     }
 
     @Override
-    public boolean isValidMove(int[] location) {
+    /**
+     * validates that the square the piece is moving to isn't the same color as
+     * this piece and that it's a valid square for this piece to move to
+     */
+    public boolean isValidMove(int moveRow, int moveColumn) {
+        //boolean locationIsValid = false;
+        //int[][] validMoves = isWhite ? validLightMoves : validDarkMoves;
+        //normally i'd use a for loop to iterate through the valid moves, but given
+        // that a pawn only has two options to move (unless it's capturing) 
+        //i'll just check them both (all 4?) manually 
+        //if()
+        
+        //return locationIsValid;
         return true;
     }
 

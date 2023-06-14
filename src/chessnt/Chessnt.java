@@ -63,8 +63,8 @@ public class Chessnt {
                     Cell cell = new Cell(r, c, (r + c) % 2 == 0);
                     CellList[r][c] = cell;
                     if (r == 6) {
-                        int[] p = {r, c};
-                        Pawn pawn = new Pawn(p, true);
+                        Pawn pawn = new Pawn(r, c, true);
+                        board.set(r, c, pawn);
                     }
                 }
                 GameFrame.giveComponentToGameBoardPanel(CellList[r][c]);
