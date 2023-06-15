@@ -129,18 +129,4 @@ public class GameFrame extends javax.swing.JFrame {
     public static void giveComponentToGameBoardPanel(Component c) {
         gameboardPanel.add(c);
     }
-    /** gets the width of the gameboard panel
-     * 
-     * @return returns the width of the <code>gameboardPanel</code>
-     */
-    public static int getGameBoardPanelWidth() {
-        return gameboardPanel.getX();
-    }
-    /** gets the length of the gameboard panel
-     * 
-     * @return returns the length of the <code>gameboardPanel</code>
-     */
-    public static int getGameBoardPanelLength() {
-        return gameboardPanel.getY();
-    }
 }

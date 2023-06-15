@@ -1,8 +1,9 @@
-package chessnt.StyleClasses;
+package chessnt.LogicClasses;
 
-import chessnt.Chessnt;
-import static chessnt.Chessnt.labelHeight;
-import static chessnt.Chessnt.labelWidth;
+import chessnt.Chess;
+import chessnt.StyleClasses.StyleManager;
+import static chessnt.Chess.labelHeight;
+import static chessnt.Chess.labelWidth;
 import javax.swing.JLabel;
 
 /**
@@ -51,19 +52,19 @@ public class Cell extends JLabel {
      * currently selected piece
      */
     private void doMouseClick() {
-        if (Chessnt.currentlySelectedPiece == null) {
-            Chessnt.currentlySelectedPiece = Chessnt.board.get(row, column);
-            if (Chessnt.currentlySelectedPiece != null) {
+        if (Chess.currentlySelectedPiece == null) {
+            Chess.currentlySelectedPiece = Chess.board.get(row, column);
+            if (Chess.currentlySelectedPiece != null) {
                 this.setBorder(StyleManager.BORDER_SELECTED);
             }
             return;
         }   
-        int cspR = Chessnt.currentlySelectedPiece.row;
-        int cspC = Chessnt.currentlySelectedPiece.column;
+        int cspR = Chess.currentlySelectedPiece.row;
+        int cspC = Chess.currentlySelectedPiece.column;
         System.out.println("cspR: " + cspR);
         System.out.println("cspC: " + cspC);
         
-        Chessnt.CellList[cspR][cspC].setBorder(StyleManager.BORDER);
-        Chessnt.currentlySelectedPiece.Move(row, column);
+        Chess.CellList[cspR][cspC].setBorder(StyleManager.BORDER);
+        Chess.currentlySelectedPiece.Move(row, column);
     }
 }

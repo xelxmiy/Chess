@@ -1,4 +1,4 @@
-package chessnt.StyleClasses;
+ package chessnt.StyleClasses;
 import javax.swing.JButton;
 import javax.swing.event.ChangeEvent;
 

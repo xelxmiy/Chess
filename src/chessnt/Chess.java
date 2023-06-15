@@ -3,7 +3,7 @@ package chessnt;
 
 import javax.swing.JFrame;
 import chessnt.LogicClasses.*;
-import chessnt.StyleClasses.Cell;
+import chessnt.LogicClasses.Cell;
 import chessnt.chesspieces.Pawn;
 
 /**
@@ -20,7 +20,7 @@ import chessnt.chesspieces.Pawn;
  * @version 1.1.1
  * @since 5-Jun-2023
  */
-public class Chessnt {
+public class Chess {
 
     public static GameBoard board;
 
@@ -64,6 +64,10 @@ public class Chessnt {
                     CellList[r][c] = cell;
                     if (r == 6) {
                         Pawn pawn = new Pawn(r, c, true);
+                        board.set(r, c, pawn);
+                    }
+                    if(r == 1) {
+                        Pawn pawn = new Pawn(r, c, false);
                         board.set(r, c, pawn);
                     }
                 }

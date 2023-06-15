@@ -1,7 +1,10 @@
 package chessnt.LogicClasses;
 
+import chessnt.Chess;
+import chessnt.StyleClasses.StyleManager;
+
 /**
- * Abstract <code>Piece</code> class representing a Chessn't piece.
+ * Abstract <code>Piece</code> class representing a Chess piece.
  *
  * @author Adam Belski
  * @since 06-Jun-2023
@@ -22,8 +25,6 @@ public abstract class Piece {
      */
     public boolean isWhite;
 
-
-
     /**
      * weather or not the given move at a location is valid
      *
@@ -39,7 +40,25 @@ public abstract class Piece {
      * @param moveRow the row of the location to move the piece
      * @param moveColumn the column of the location to move the piece
      */
-    public abstract void Move(int moveRow, int moveColumn);
+    public void Move(int moveRow, int moveColumn) {
+        if (isValidMove(moveRow, moveColumn)) {
+
+            Chess.board.set(row, column, null);
+
+            Chess.CellList[row][column].setBackground((row + column) % 2 == 0
+                    ? StyleManager.lightCell : StyleManager.darkCell);
+
+            Chess.board.set(moveRow, moveColumn, this);
+
+            Chess.CellList[moveRow][moveColumn].setBackground(StyleManager.WHITE);
+ 
+            row = moveRow;
+            column = moveColumn;
+        }
+        
+        Chess.currentlySelectedPiece = null;
+        
+    }
 
     /**
      * what occurs when the given piece gets captured

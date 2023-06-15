@@ -1,6 +1,6 @@
 package chessnt.LogicClasses;
 
-import chessnt.Chessnt;
+import chessnt.Chess;
 
 /**
  * @author Adam Belski
@@ -9,8 +9,8 @@ import chessnt.Chessnt;
  */
 public class GameBoard extends Matrix {
     
-    public int[][] dangerousLightSquares = new int[Chessnt.BOARD_SIZE^2][2];
-    public int[][] dangerousDarkSquares = new int[Chessnt.BOARD_SIZE^2][2];
+    public int[][] dangerousLightSquares = new int[Chess.BOARD_SIZE^2][2];
+    public int[][] dangerousDarkSquares = new int[Chess.BOARD_SIZE^2][2];
     
     /**
      * creates a Square GameBoard with a set size
