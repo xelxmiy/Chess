@@ -2,6 +2,7 @@ package chessnt.LogicClasses;
 
 import chessnt.Chess;
 import chessnt.StyleClasses.StyleManager;
+import javax.swing.ImageIcon;
 
 /**
  * Abstract <code>Piece</code> class representing a Chess piece.
@@ -24,7 +25,11 @@ public abstract class Piece {
      * weather or not the given piece is "white" and goes first.
      */
     public boolean isWhite;
-
+    /**
+     * The icon of this piece
+     */
+    public ImageIcon pieceIcon;
+    
     /**
      * weather or not the given move at a location is valid
      *
@@ -45,12 +50,11 @@ public abstract class Piece {
 
             Chess.board.set(row, column, null);
 
-            Chess.CellList[row][column].setBackground((row + column) % 2 == 0
-                    ? StyleManager.lightCell : StyleManager.darkCell);
+            Chess.CellList[row][column].setIcon(null);
 
             Chess.board.set(moveRow, moveColumn, this);
 
-            Chess.CellList[moveRow][moveColumn].setBackground(StyleManager.WHITE);
+            Chess.CellList[moveRow][moveColumn].setImage(pieceIcon);
  
             row = moveRow;
             column = moveColumn;

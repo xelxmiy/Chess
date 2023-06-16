@@ -4,6 +4,10 @@ import chessnt.Chess;
 import chessnt.StyleClasses.StyleManager;
 import static chessnt.Chess.labelHeight;
 import static chessnt.Chess.labelWidth;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import java.util.Set;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
@@ -58,13 +62,33 @@ public class Cell extends JLabel {
                 this.setBorder(StyleManager.BORDER_SELECTED);
             }
             return;
-        }   
+        }
         int cspR = Chess.currentlySelectedPiece.row;
         int cspC = Chess.currentlySelectedPiece.column;
         System.out.println("cspR: " + cspR);
         System.out.println("cspC: " + cspC);
-        
+
         Chess.CellList[cspR][cspC].setBorder(StyleManager.BORDER);
         Chess.currentlySelectedPiece.Move(row, column);
+    }
+
+    /**
+     * sets the image for the current frame. a complicated dance of converting
+     * one image type to another. "adapted" from
+     * https://stackoverflow.com/a/16345968
+     *
+     * @param imgIcon imageIcon to set this LifeLabel to.
+     */
+    public void setImage(ImageIcon imgIcon) {
+        BufferedImage img;
+        Image image = imgIcon.getImage();
+        img = (BufferedImage) image;
+        try {
+            Image dimg = img.getScaledInstance(this.getWidth(), this.getHeight(),
+                    Image.SCALE_SMOOTH);
+            ImageIcon imageIcon = new ImageIcon(dimg);
+            this.setIcon(imageIcon);
+        } catch (IllegalArgumentException IAE) {
+        }
     }
 }

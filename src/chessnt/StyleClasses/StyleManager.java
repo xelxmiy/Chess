@@ -2,7 +2,12 @@ package chessnt.StyleClasses;
 
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 
 /**
@@ -62,6 +67,16 @@ public class StyleManager {
      */
     public static Color darkCell = new Color(25, 25, 25);
 
+    /**
+     * the top color for selected cells
+     */
+    public static Color selectedHighlight = new Color(255, 0, 0);
+
+    /**
+     * the shadow color for selected cells
+     */
+    public static Color selectedShadow = new Color(0, 255, 0);
+
     /* final variables */
     //
     /**
@@ -92,10 +107,31 @@ public class StyleManager {
      * This is the standard border for all objects
      */
     public static final Border BORDER = BorderFactory.createBevelBorder(0);
+
     /**
      * this is the border for the selected piece
      */
-    public static final Border BORDER_SELECTED = BorderFactory.createBevelBorder(0, new Color(0,255,0), new Color(255,0,0));
+    public static final Border BORDER_SELECTED = BorderFactory.createBevelBorder(0, selectedHighlight, selectedShadow);
+
+    /**
+     * This is the image for light pawns
+     */
+    public static ImageIcon lightPawnImg;
+
+    /**
+     * This is the image for dark pawns
+     */
+    public static ImageIcon darkPawnImg;
+    
+    /**
+     * This is the image for dark rooks
+     */
+    public static ImageIcon darkRookImg;
+    
+    /**
+     * This is the image for dark rooks
+     */
+    public static ImageIcon lightRookImg;
 
     /**
      * changes the color scheme of the whole program based on the preset
@@ -124,51 +160,38 @@ public class StyleManager {
                 lightCell = new Color(40, 40, 40);
 
                 darkCell = new Color(25, 25, 25);
+                System.out.println("Setting Images!");
+                try {
+                    /* Light Pawn Image */
+                    File lightPawnFile
+                            = new File("src\\images\\lightPawn.png");
+                    lightPawnFile.getAbsolutePath();
+                    Image lightPawnImgIcon = ImageIO.read(lightPawnFile);
+                    lightPawnImg = new ImageIcon(lightPawnImgIcon);
 
+                    /* Dark Pawn Image */
+                    File DarkPawnFile
+                            = new File("src\\images\\darkPawn.png");
+                    DarkPawnFile.getAbsolutePath();
+                    Image darkPawnImgIcon = ImageIO.read(DarkPawnFile);
+                    darkPawnImg = new ImageIcon(darkPawnImgIcon);
+                    
+                    /* Dark Rook Image */
+                    File darkRookFile
+                            = new File("src\\images\\darkRook.png");
+                    darkRookFile.getAbsolutePath();
+                    Image darkRookImgIcon = ImageIO.read(darkRookFile);
+                    darkRookImg = new ImageIcon(darkRookImgIcon);
+                    
+                    /* Light Rook Image */
+                    File lightRookFile
+                            = new File("src\\images\\lightRook.png");
+                    lightRookFile.getAbsolutePath();
+                    Image lightRookImgIcon = ImageIO.read(lightRookFile);
+                    lightRookImg = new ImageIcon(lightRookImgIcon);
+                } catch (IOException ex) {
+                }
                 break;
-            //this theme is pink/red!
-            case "Strawberry":
-
-                jPanelBackground = new Color(200, 75, 75);
-
-                jPanelExtra = new Color(220, 75, 75);
-
-                jPanelAccents = new Color(35, 35, 35);
-
-                chessButtonUnpressed = new Color(180, 65, 65);
-
-                chessButtonHighlighted = new Color(190, 65, 65);
-
-                chessButtonPressed = new Color(160, 55, 55);
-
-                lightCell = new Color(230, 120, 120);
-
-                darkCell = new Color(160, 55, 55);
-
-                break;
-
-            //this theme is green! 
-            case "Jungle":
-
-                jPanelBackground = new Color(45, 90, 45);
-
-                jPanelExtra = new Color(55, 90, 55);
-
-                jPanelAccents = new Color(15, 75, 15);
-
-                chessButtonUnpressed = new Color(25, 80, 25);
-
-                chessButtonHighlighted = new Color(35, 80, 35);
-
-                chessButtonPressed = new Color(15, 70, 15);
-
-                lightCell = new Color(70, 110, 70);
-
-                darkCell = new Color(15, 70, 15);
-
-                break;
-
         }
-
     }
 }

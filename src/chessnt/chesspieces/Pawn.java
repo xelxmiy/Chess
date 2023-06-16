@@ -4,6 +4,11 @@ import chessnt.Chess;
 import chessnt.LogicClasses.Piece;
 import chessnt.StyleClasses.StyleManager;
 import java.awt.Color;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 
 /**
  * Pawn Class representing a piece that replaces the Pawn in Chessn't.
@@ -28,8 +33,11 @@ public class Pawn extends Piece {
         
         startingRow = row;
         
-        System.out.println("new serf being created at + " + row + "," + column);
-        Chess.CellList[row][column].setBackground(isWhite ? new Color(255, 255, 255) : new Color(0, 0, 0));
+        System.out.println("new Pawn being created at + " + row + "," + column);
+        
+        this.pieceIcon = isWhite ? StyleManager.lightPawnImg : StyleManager.darkPawnImg;
+        
+        Chess.CellList[row][column].setImage(pieceIcon);
     }
 
     @Override

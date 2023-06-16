@@ -4,7 +4,8 @@ package chessnt;
 import javax.swing.JFrame;
 import chessnt.LogicClasses.*;
 import chessnt.LogicClasses.Cell;
-import chessnt.chesspieces.Pawn;
+import chessnt.StyleClasses.StyleManager;
+import chessnt.chesspieces.*;
 
 /**
  * Chessnt - Chessn't it's not chess! it's also not *not* chess. it's somewhere
@@ -43,6 +44,7 @@ public class Chess {
      */
     public static void main(String[] args) {
 
+        StyleManager.setTheme("Default");
         if (board == null) {
             board = new GameBoard(BOARD_SIZE);
         }
@@ -66,10 +68,19 @@ public class Chess {
                         Pawn pawn = new Pawn(r, c, true);
                         board.set(r, c, pawn);
                     }
-                    if(r == 1) {
+                    if (r == 1) {
                         Pawn pawn = new Pawn(r, c, false);
                         board.set(r, c, pawn);
                     }
+                    if (r == 0 && (c == 0 || c == 7)) {
+                        Rook rook = new Rook(r, c, false);
+                        board.set(r, c, rook);
+                    }
+                    if (r == 7 && (c == 0 || c == 7)) {
+                        Rook rook = new Rook(r, c, true);
+                        board.set(r, c, rook);
+                    }
+                    
                 }
                 GameFrame.giveComponentToGameBoardPanel(CellList[r][c]);
             }
