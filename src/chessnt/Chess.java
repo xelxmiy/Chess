@@ -76,9 +76,17 @@ public class Chess {
                         Rook rook = new Rook(r, c, false);
                         board.set(r, c, rook);
                     }
-                    if (r == 7 && (c == 0 || c == 7)) {
+                    if (r == 7 && (c == 7 || c == 0)) {
                         Rook rook = new Rook(r, c, true);
                         board.set(r, c, rook);
+                    }
+                    if (r == 0 && (c == 1 || c == 6)) {
+                        Knight knight = new Knight(r, c, false);
+                        board.set(r, c, knight);
+                    }
+                    if (r == 7 && (c == 1 || c == 6)) {
+                        Knight knight = new Knight(r, c, true);
+                        board.set(r, c, knight);
                     }
                     
                 }
