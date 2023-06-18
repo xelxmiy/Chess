@@ -15,7 +15,7 @@ import javax.swing.border.Border;
  *
  * @author Adam Belski
  * @since 07-Jun-2023
- * @version 1.0.0
+ * @version 1.1.0
  */
 public class StyleManager {
 
@@ -111,8 +111,9 @@ public class StyleManager {
     /**
      * this is the border for the selected piece
      */
-    public static final Border BORDER_SELECTED = BorderFactory.createBevelBorder(0, selectedHighlight, selectedShadow);
+    public static Border borderSelected;
 
+    /* images */
     /**
      * This is the image for light pawns
      */
@@ -122,16 +123,55 @@ public class StyleManager {
      * This is the image for dark pawns
      */
     public static ImageIcon darkPawnImg;
-    
+
+    /**
+     * This is the image for light knights
+     */
+    public static ImageIcon lightKnightImg;
+
+    /**
+     * This is the image for dark knights
+     */
+    public static ImageIcon darkKnightImg; //should've named this one "batman"
+
+    /**
+     * This is the image for dark bishops
+     */
+    public static ImageIcon darkBishopImg;
+
+    /**
+     * This is the image for light bishops
+     */
+    public static ImageIcon lightBishopImg;
+
     /**
      * This is the image for dark rooks
      */
     public static ImageIcon darkRookImg;
-    
+
     /**
-     * This is the image for dark rooks
+     * This is the image for light rooks
      */
     public static ImageIcon lightRookImg;
+
+    /**
+     * This is the image for dark queens
+     */
+    public static ImageIcon darkQueenImg;
+
+    /**
+     * This is the image for light queens
+     */
+    public static ImageIcon lightQueenImg;
+    /**
+     * This is the image for dark king
+     */
+    public static ImageIcon darkKingImg;
+
+    /**
+     * This is the image for light king
+     */
+    public static ImageIcon lightKingImg;
 
     /**
      * changes the color scheme of the whole program based on the preset
@@ -140,8 +180,11 @@ public class StyleManager {
      */
     public static void setTheme(String theme) {
 
-        switch (theme) {
+        String[] paths = new String[12];
 
+        ImageIcon[] pieceImages = new ImageIcon[12];
+
+        switch (theme) {
             //this is the default theme, it's gray!
             case "Default":
 
@@ -157,41 +200,76 @@ public class StyleManager {
 
                 chessButtonPressed = new Color(35, 35, 35);
 
-                lightCell = new Color(40, 40, 40);
+                lightCell = new Color(189, 143, 98);
 
-                darkCell = new Color(25, 25, 25);
-                System.out.println("Setting Images!");
-                try {
-                    /* Light Pawn Image */
-                    File lightPawnFile
-                            = new File("src\\images\\lightPawn.png");
-                    lightPawnFile.getAbsolutePath();
-                    Image lightPawnImgIcon = ImageIO.read(lightPawnFile);
-                    lightPawnImg = new ImageIcon(lightPawnImgIcon);
+                darkCell = new Color(115, 81, 48);
 
-                    /* Dark Pawn Image */
-                    File DarkPawnFile
-                            = new File("src\\images\\darkPawn.png");
-                    DarkPawnFile.getAbsolutePath();
-                    Image darkPawnImgIcon = ImageIO.read(DarkPawnFile);
-                    darkPawnImg = new ImageIcon(darkPawnImgIcon);
-                    
-                    /* Dark Rook Image */
-                    File darkRookFile
-                            = new File("src\\images\\darkRook.png");
-                    darkRookFile.getAbsolutePath();
-                    Image darkRookImgIcon = ImageIO.read(darkRookFile);
-                    darkRookImg = new ImageIcon(darkRookImgIcon);
-                    
-                    /* Light Rook Image */
-                    File lightRookFile
-                            = new File("src\\images\\lightRook.png");
-                    lightRookFile.getAbsolutePath();
-                    Image lightRookImgIcon = ImageIO.read(lightRookFile);
-                    lightRookImg = new ImageIcon(lightRookImgIcon);
-                } catch (IOException ex) {
-                }
+                selectedHighlight = new Color(255, 255, 255);
+
+                selectedShadow = new Color(255, 255, 255);
+
+                borderSelected = BorderFactory.createBevelBorder(
+                        0, selectedHighlight, selectedShadow);
+
+                String[] newPaths = {
+                    "src\\Images\\lightPawn.png",
+                    "src\\Images\\darkPawn.png",
+                    "src\\Images\\lightKnight.png",
+                    "src\\Images\\darkKnight.png",
+                    "src\\Images\\lightBishop.png",
+                    "src\\Images\\darkBishop.png",
+                    "src\\Images\\lightRook.png",
+                    "src\\Images\\darkRook.png",
+                    "src\\Images\\lightQueen.png",
+                    "src\\Images\\darkQueen.png",
+                    "src\\Images\\lightKing.png",
+                    "src\\Images\\darkKing.png"
+                };
+                paths = newPaths;
                 break;
         }
+        //setting images!
+        try {
+            Image[] images = new Image[pieceImages.length];
+            for (int i = 0; i < paths.length; i++) {
+
+                File imageFile
+                        = new File(paths[i]);
+                imageFile.getAbsolutePath();
+
+                Image image = ImageIO.read(imageFile);
+
+                pieceImages[i] = new ImageIcon(image);
+            }
+            /*
+            I looked for so long for a better way to this.
+            it is currently 1 AM as i'm writing this. I give up.
+            unfrotunatly, this is my best work.
+            i wanted to have each style only set the paths for each image
+            and then a for loops iterated through that and using arrays sets
+            each piece's image individually, unfortunatly setting the pieces
+            only sets that in the position of the array, and i couldn't find a 
+            way to access the thing inside. i may or may not ask about this
+            depending on if i remember. but this could *be* better, i just don't 
+            know if *I* can make it better.
+             */
+            lightPawnImg = pieceImages[0];
+            darkPawnImg = pieceImages[1];
+            lightKnightImg = pieceImages[2];
+            darkKnightImg = pieceImages[3];
+            lightBishopImg = pieceImages[4];
+            darkBishopImg = pieceImages[5];
+            lightRookImg = pieceImages[6];
+            darkRookImg = pieceImages[7];
+            lightQueenImg = pieceImages[8];
+            darkQueenImg = pieceImages[9];
+            lightKingImg = pieceImages[10];
+            darkKingImg = pieceImages[11];
+
+        } catch (IOException ex) {
+            //this isn't proper error checking, too bad!
+            System.out.println(ex.toString());
+        }
+
     }
 }

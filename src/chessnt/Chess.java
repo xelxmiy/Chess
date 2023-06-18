@@ -25,9 +25,7 @@ public class Chess {
 
     public static GameBoard board;
 
-    private final static int GAMEPANEL_SIZE = 720;
-
-    public static final int BOARD_SIZE = 8;
+    public static boolean lightsTurn = true;
 
     public static Cell[][] CellList;
 
@@ -45,6 +43,7 @@ public class Chess {
     public static void main(String[] args) {
 
         StyleManager.setTheme("Default");
+        
         if (board == null) {
             board = new GameBoard(BOARD_SIZE);
         }
@@ -64,27 +63,81 @@ public class Chess {
                 {
                     Cell cell = new Cell(r, c, (r + c) % 2 == 0);
                     CellList[r][c] = cell;
-                    if (r == 6) {
-                        Pawn pawn = new Pawn(r, c, true);
-                        board.set(r, c, pawn);
-                    }
-                    if (r == 1) {
-                        Pawn pawn = new Pawn(r, c, false);
-                        board.set(r, c, pawn);
-                    }
-                    if (r == 0 && (c == 0 || c == 7)) {
-                        Rook rook = new Rook(r, c, false);
-                        board.set(r, c, rook);
-                    }
-                    if (r == 7 && (c == 0 || c == 7)) {
-                        Rook rook = new Rook(r, c, true);
-                        board.set(r, c, rook);
-                    }
-                    
+                    makePieces(r, c);
                 }
                 GameFrame.giveComponentToGameBoardPanel(CellList[r][c]);
             }
         }
         frame.setVisible(true);
     }
+
+    /**
+     * Creates the placement of the pieces
+     *
+     * @param r current row
+     * @param c current column
+     */
+    private static void makePieces(int r, int c) {
+        if (r == LIGHT_FRONTROW) {
+            Pawn pawn = new Pawn(r, c, true);
+            board.set(r, c, pawn);
+        }
+        if (r == DARK_FRONTROW) {
+            Pawn pawn = new Pawn(r, c, false);
+            board.set(r, c, pawn);
+        }
+        if (r == DARK_BACKROW && (c == 0 || c == 7)) {
+            Rook rook = new Rook(r, c, false);
+            board.set(r, c, rook);
+        }
+        if (r == LIGHT_BACKROW && (c == 7 || c == 0)) {
+            Rook rook = new Rook(r, c, true);
+            board.set(r, c, rook);
+        }
+        if (r == DARK_BACKROW && (c == 1 || c == 6)) {
+            Knight knight = new Knight(r, c, false);
+            board.set(r, c, knight);
+        }
+        if (r == LIGHT_BACKROW && (c == 1 || c == 6)) {
+            Knight knight = new Knight(r, c, true);
+            board.set(r, c, knight);
+        }
+        if (r == DARK_BACKROW && (c == 2 || c == 5)) {
+            Bishop bishop = new Bishop(r, c, false);
+            board.set(r, c, bishop);
+        }
+        if (r == LIGHT_BACKROW && (c == 2 || c == 5)) {
+            Bishop bishop = new Bishop(r, c, true);
+            board.set(r, c, bishop);
+        }
+        if (r == DARK_BACKROW && (c == 3)) {
+            Queen queen = new Queen(r, c, false);
+            board.set(r, c, queen);
+        }
+        if (r == LIGHT_BACKROW && (c == 3)) {
+            Queen queen = new Queen(r, c, true);
+            board.set(r, c, queen);
+        }
+        if (r == DARK_BACKROW && (c == 4)) {
+            King king = new King(r, c, false);
+            board.set(r, c, king);
+        }
+        if (r == LIGHT_BACKROW && (c == 4)) {
+            King king = new King(r, c, true);
+            board.set(r, c, king);
+        }
+    }
+
+    /* Final  Variables */
+    private static final int LIGHT_BACKROW = 7;
+
+    private static final int LIGHT_FRONTROW = 6;
+
+    private static final int DARK_BACKROW = 0;
+
+    private static final int DARK_FRONTROW = 1;
+
+    private final static int GAMEPANEL_SIZE = 720;
+
+    public static final int BOARD_SIZE = 8;
 }

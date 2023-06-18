@@ -6,13 +6,12 @@ import static chessnt.Chess.labelHeight;
 import static chessnt.Chess.labelWidth;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
-import java.util.Set;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
 /**
  * @author Adam Belski
- * @version 1.0.1
+ * @version 1.0.3
  * @since 7-Jun-2023
  */
 public class Cell extends JLabel {
@@ -33,7 +32,6 @@ public class Cell extends JLabel {
         this.row = row;
         this.column = column;
 
-        this.setBorder(StyleManager.BORDER);
         this.setOpaque(true);
         this.setBounds(labelWidth * column, labelHeight * row,
                 labelWidth, labelHeight);
@@ -56,20 +54,26 @@ public class Cell extends JLabel {
      * currently selected piece
      */
     private void doMouseClick() {
+
         if (Chess.currentlySelectedPiece == null) {
             Chess.currentlySelectedPiece = Chess.board.get(row, column);
             if (Chess.currentlySelectedPiece != null) {
-                this.setBorder(StyleManager.BORDER_SELECTED);
+                if (Chess.lightsTurn == Chess.currentlySelectedPiece.isLight) {
+                    this.setBorder(StyleManager.borderSelected);
+                } else {
+                    Chess.currentlySelectedPiece = null;
+                }
             }
             return;
         }
+
         int cspR = Chess.currentlySelectedPiece.row;
         int cspC = Chess.currentlySelectedPiece.column;
-        System.out.println("cspR: " + cspR);
-        System.out.println("cspC: " + cspC);
 
-        Chess.CellList[cspR][cspC].setBorder(StyleManager.BORDER);
-        Chess.currentlySelectedPiece.Move(row, column);
+        Chess.CellList[cspR][cspC].setBorder(null);
+        if (Chess.lightsTurn == Chess.currentlySelectedPiece.isLight) {
+            Chess.currentlySelectedPiece.Move(row, column);
+        }
     }
 
     /**
@@ -80,15 +84,19 @@ public class Cell extends JLabel {
      * @param imgIcon imageIcon to set this LifeLabel to.
      */
     public void setImage(ImageIcon imgIcon) {
-        BufferedImage img;
-        Image image = imgIcon.getImage();
-        img = (BufferedImage) image;
         try {
-            Image dimg = img.getScaledInstance(this.getWidth(), this.getHeight(),
-                    Image.SCALE_SMOOTH);
-            ImageIcon imageIcon = new ImageIcon(dimg);
-            this.setIcon(imageIcon);
-        } catch (IllegalArgumentException IAE) {
+            BufferedImage img;
+            Image image = imgIcon.getImage();
+            img = (BufferedImage) image;
+            try {
+                Image dimg = img.getScaledInstance(this.getWidth(), this.getHeight(),
+                        Image.SCALE_SMOOTH);
+                ImageIcon imageIcon = new ImageIcon(dimg);
+                this.setIcon(imageIcon);
+            } catch (IllegalArgumentException IAE) {
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
         }
     }
 }
