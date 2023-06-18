@@ -16,25 +16,25 @@ public abstract class Piece {
      * the row the piece is on
      */
     public int row;
-    
+
     /**
      * the column the piece is on
      */
     public int column;
-    
+
     /**
      * weather or not the given piece is "white" and goes first.
-     */ 
+     */
     // this *could* technically be final but java's style is terrible 
     // but this is technically not breaking the style guidlines :)
-    public boolean isLight; 
-    
+    public boolean isLight;
+
     /**
      * The icon of this piece
      */
     public ImageIcon pieceIcon;
-    
-     /**
+
+    /**
      * validates that the square the piece is moving to isn't the same color as
      * this piece and that it's a valid square for this piece to move to
      *
@@ -52,6 +52,7 @@ public abstract class Piece {
      * @param moveColumn the column of the location to move the piece
      */
     public void Move(int moveRow, int moveColumn) {
+
         if (isValidMove(moveRow, moveColumn)) {
 
             Chess.board.set(row, column, null);
@@ -61,13 +62,14 @@ public abstract class Piece {
             Chess.board.set(moveRow, moveColumn, this);
 
             Chess.CellList[moveRow][moveColumn].setImage(pieceIcon);
- 
+
             row = moveRow;
             column = moveColumn;
+
+            Chess.lightsTurn = !Chess.lightsTurn;
         }
-        
+
         Chess.currentlySelectedPiece = null;
-        
     }
 
     /**

@@ -9,10 +9,10 @@ import chessnt.LogicClasses.Piece;
 import chessnt.StyleClasses.StyleManager;
 
 /**
- * Pawn Class representing a piece that replaces the Pawn in Chessn't.
+ * Knight that moves like an L 
  *
  * @author Adam Belski
- * @since 176-Jun-2023
+ * @since 17-Jun-2023
  * @version 1.0.0
  */
 public class Knight extends Piece{
@@ -25,8 +25,7 @@ public class Knight extends Piece{
     
     public Knight(int row, int column, boolean isWhite) {
         super(row, column, isWhite);
-        
-        
+             
         this.row = row;
         this.column = column;
 
@@ -38,7 +37,7 @@ public class Knight extends Piece{
 
     @Override
     public boolean isValidMove(int moveRow, int moveColumn) {
-        //check to prevent the knight  capturing one of it's own pieces
+        //check to prevent the knight capturing one of it's own pieces
         if (Chess.board.get(moveRow, moveColumn) != null) {
             if (Chess.board.get(moveRow, moveColumn).isLight == isLight) {
                 return false;

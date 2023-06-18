@@ -32,7 +32,6 @@ public class Cell extends JLabel {
         this.row = row;
         this.column = column;
 
-        this.setBorder(StyleManager.BORDER);
         this.setOpaque(true);
         this.setBounds(labelWidth * column, labelHeight * row,
                 labelWidth, labelHeight);
@@ -55,17 +54,26 @@ public class Cell extends JLabel {
      * currently selected piece
      */
     private void doMouseClick() {
+
         if (Chess.currentlySelectedPiece == null) {
             Chess.currentlySelectedPiece = Chess.board.get(row, column);
             if (Chess.currentlySelectedPiece != null) {
-                this.setBorder(StyleManager.borderSelected);
+                if (Chess.lightsTurn == Chess.currentlySelectedPiece.isLight) {
+                    this.setBorder(StyleManager.borderSelected);
+                } else {
+                    Chess.currentlySelectedPiece = null;
+                }
             }
             return;
         }
+
         int cspR = Chess.currentlySelectedPiece.row;
         int cspC = Chess.currentlySelectedPiece.column;
-        Chess.CellList[cspR][cspC].setBorder(StyleManager.BORDER);
-        Chess.currentlySelectedPiece.Move(row, column);
+
+        Chess.CellList[cspR][cspC].setBorder(null);
+        if (Chess.lightsTurn == Chess.currentlySelectedPiece.isLight) {
+            Chess.currentlySelectedPiece.Move(row, column);
+        }
     }
 
     /**

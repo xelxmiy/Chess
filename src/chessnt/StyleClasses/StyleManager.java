@@ -200,9 +200,13 @@ public class StyleManager {
 
                 chessButtonPressed = new Color(35, 35, 35);
 
-                lightCell = new Color(40, 40, 40);
+                lightCell = new Color(189, 143, 98);
 
-                darkCell = new Color(25, 25, 25);
+                darkCell = new Color(115, 81, 48);
+
+                selectedHighlight = new Color(255, 255, 255);
+
+                selectedShadow = new Color(255, 255, 255);
 
                 borderSelected = BorderFactory.createBevelBorder(
                         0, selectedHighlight, selectedShadow);
@@ -248,7 +252,7 @@ public class StyleManager {
             way to access the thing inside. i may or may not ask about this
             depending on if i remember. but this could *be* better, i just don't 
             know if *I* can make it better.
-            */
+             */
             lightPawnImg = pieceImages[0];
             darkPawnImg = pieceImages[1];
             lightKnightImg = pieceImages[2];

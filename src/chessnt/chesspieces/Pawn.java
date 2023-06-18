@@ -5,7 +5,7 @@ import chessnt.LogicClasses.Piece;
 import chessnt.StyleClasses.StyleManager;
 
 /**
- * Pawn Class representing a piece that replaces the Pawn in Chessn't.
+ * Pawn that moves forward and takes diagonally 1 square
  *
  * @author Adam Belski
  * @since 06-Jun-2023

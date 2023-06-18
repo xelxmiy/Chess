@@ -51,7 +51,7 @@ public class Rook extends Piece {
             }
         }
 
-        // checks that there's no pieces in-between where the rook wants to go1
+        // checks that there's no pieces in-between where the rook wants to go
         if (moveRow == row) {
             int direction = moveColumn > column ? 1 : -1;
             for (int i = (column + direction); i != moveColumn; i += direction) {

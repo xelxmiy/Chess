@@ -2,6 +2,10 @@ package chessnt;
 
 import chessnt.StyleClasses.StyleManager;
 import java.awt.Component;
+import java.awt.Image;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 /** The Place where the magic happens. This frame contains the board the game is
  * played on. 
@@ -18,6 +22,8 @@ public class GameFrame extends javax.swing.JFrame {
     public GameFrame() {
         initComponents();
         this.setLocationRelativeTo(null);
+        setIconImage();
+        
     }
 
     /**
@@ -128,5 +134,18 @@ public class GameFrame extends javax.swing.JFrame {
      */
     public static void giveComponentToGameBoardPanel(Component c) {
         gameboardPanel.add(c);
+    }
+        /**
+     * sets the icon for the JFrame
+     */
+    private void setIconImage() {
+        try {
+            File IconImagePath
+                    = new File("src\\images\\icon.png");
+            IconImagePath.getAbsolutePath();
+            Image iconImage = ImageIO.read(IconImagePath);
+            this.setIconImage(iconImage);
+        } catch (IOException ex) {
+        }
     }
 }
