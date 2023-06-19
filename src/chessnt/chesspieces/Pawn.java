@@ -19,29 +19,17 @@ public class Pawn extends Piece {
 
     public Pawn(int row, int column, boolean isWhite) {
         super(row, column, isWhite);
-
+        
         this.row = row;
         this.column = column;
 
         direction = isWhite ? -1 : 1;
-
+        
         startingRow = row;
-
+                
         this.pieceIcon = isWhite ? StyleManager.lightPawnImg : StyleManager.darkPawnImg;
-
+        
         Chess.CellList[row][column].setImage(pieceIcon);
-    }
-
-    @Override
-    public void move(int row, int column) {
-        
-        super.move(row, column);
-        
-        if (isLight && row == 0) {
-            promote();
-        } else if (!isLight && row == 7) {
-            promote();
-        }
     }
 
     @Override
@@ -50,7 +38,7 @@ public class Pawn extends Piece {
         // that a pawn only has two options to move (unless it's capturing) 
         //i'll just check them both (all 4?) manually 
         // update: this was a mistake.
-
+        
         //checks that the pawn isn't moving to the same square, skipping a turn.
         if (moveRow == row && moveColumn == column) {
             return false;
@@ -85,9 +73,5 @@ public class Pawn extends Piece {
             }
         }
         return false;
-    }
-
-    private void promote() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

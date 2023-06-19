@@ -1,4 +1,4 @@
-package chessnt.Frames;
+package chessnt;
 
 import chessnt.StyleClasses.StyleManager;
 import java.awt.Component;

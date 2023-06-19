@@ -51,7 +51,7 @@ public abstract class Piece {
      * @param moveRow the row of the location to move the piece
      * @param moveColumn the column of the location to move the piece
      */
-    public void move(int moveRow, int moveColumn) {
+    public void Move(int moveRow, int moveColumn) {
 
         if (isValidMove(moveRow, moveColumn)) {
 
@@ -67,8 +67,6 @@ public abstract class Piece {
             column = moveColumn;
 
             Chess.lightsTurn = !Chess.lightsTurn;
-            System.out.println("turn: " +  Chess.lightsTurn);
-            
         }
 
         Chess.currentlySelectedPiece = null;
