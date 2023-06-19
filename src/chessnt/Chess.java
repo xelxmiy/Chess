@@ -1,6 +1,7 @@
 /** Required package class namespace */
 package chessnt;
 
+import chessnt.Frames.GameFrame;
 import javax.swing.JFrame;
 import chessnt.LogicClasses.*;
 import chessnt.LogicClasses.Cell;
@@ -34,14 +35,22 @@ public class Chess {
     public static int labelHeight;
 
     public static Piece currentlySelectedPiece;
-
+    
+    public static Timer whiteTimer;
+    
+    public static Timer blackTimer;
+    
     /**
      * Main method for the project
      *
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        
+        whiteTimer = new Timer(300, true);
+        
+        blackTimer = new Timer(300, false);
+        
         StyleManager.setTheme("Default");
         
         if (board == null) {

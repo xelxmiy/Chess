@@ -72,12 +72,12 @@ public class Cell extends JLabel {
 
         Chess.CellList[cspR][cspC].setBorder(null);
         if (Chess.lightsTurn == Chess.currentlySelectedPiece.isLight) {
-            Chess.currentlySelectedPiece.Move(row, column);
+            Chess.currentlySelectedPiece.move(row, column);
         }
     }
 
     /**
-     * sets the image for the current frame. a complicated dance of converting
+     * sets the image for the current component. a complicated dance of converting
      * one image type to another. "adapted" from
      * https://stackoverflow.com/a/16345968
      *
