@@ -1,6 +1,6 @@
 package chessnt.chesspieces;
 
-import chessnt.Chess;
+import chess.Chess;
 import chessnt.LogicClasses.Piece;
 import chessnt.StyleClasses.StyleManager;
 

@@ -1,6 +1,6 @@
 package chessnt.LogicClasses;
 
-import chessnt.Chess;
+import chess.Chess;
 import javax.swing.ImageIcon;
 
 /**

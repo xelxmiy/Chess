@@ -1,9 +1,9 @@
 package chessnt.LogicClasses;
 
-import chessnt.Chess;
+import chess.Chess;
 import chessnt.StyleClasses.StyleManager;
-import static chessnt.Chess.labelHeight;
-import static chessnt.Chess.labelWidth;
+import static chess.Chess.labelHeight;
+import static chess.Chess.labelWidth;
 import java.awt.Image;
 import java.awt.image.BufferedImage;
 import javax.swing.ImageIcon;
@@ -77,7 +77,7 @@ public class Cell extends JLabel {
     }
 
     /**
-     * sets the image for the current frame. a complicated dance of converting
+     * sets the image for the current component. a complicated dance of converting
      * one image type to another. "adapted" from
      * https://stackoverflow.com/a/16345968
      *
