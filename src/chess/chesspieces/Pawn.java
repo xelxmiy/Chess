@@ -1,8 +1,8 @@
-package chessnt.chesspieces;
+package chess.chesspieces;
 
 import chess.Chess;
-import chessnt.LogicClasses.Piece;
-import chessnt.StyleClasses.StyleManager;
+import chess.LogicClasses.Piece;
+import chess.StyleClasses.StyleManager;
 
 /**
  * Pawn that moves forward and takes diagonally 1 square

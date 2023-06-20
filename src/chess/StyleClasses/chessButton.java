@@ -1,4 +1,4 @@
-package chessnt.StyleClasses;
+package chess.StyleClasses;
 
 import java.awt.Image;
 import java.awt.image.BufferedImage;

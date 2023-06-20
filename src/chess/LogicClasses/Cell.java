@@ -1,7 +1,7 @@
-package chessnt.LogicClasses;
+package chess.LogicClasses;
 
 import chess.Chess;
-import chessnt.StyleClasses.StyleManager;
+import chess.StyleClasses.StyleManager;
 import static chess.Chess.labelHeight;
 import static chess.Chess.labelWidth;
 import java.awt.Image;

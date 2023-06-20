@@ -1,4 +1,4 @@
-package chessnt.StyleClasses;
+package chess.StyleClasses;
 
 import java.awt.Color;
 import java.awt.Font;

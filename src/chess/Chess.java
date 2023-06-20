@@ -1,12 +1,19 @@
 /** Required package class namespace */
 package chess;
 
-import chessnt.Forms.GameFrame;
+import chess.LogicClasses.GameBoard;
+import chess.LogicClasses.Timer;
+import chess.LogicClasses.Piece;
+import chess.chesspieces.Rook;
+import chess.chesspieces.Knight;
+import chess.chesspieces.King;
+import chess.chesspieces.Pawn;
+import chess.chesspieces.Bishop;
+import chess.chesspieces.Queen;
+import chess.Forms.GameFrame;
 import javax.swing.JFrame;
-import chessnt.LogicClasses.*;
-import chessnt.LogicClasses.Cell;
-import chessnt.StyleClasses.StyleManager;
-import chessnt.chesspieces.*;
+import chess.LogicClasses.Cell;
+import chess.StyleClasses.StyleManager;
 
 /**
  * Chessnt - Chessn't it's not chess! it's also not *not* chess. it's somewhere
@@ -25,7 +32,9 @@ import chessnt.chesspieces.*;
 public class Chess {
 
     public static GameBoard board;
-
+    
+    public static boolean gameIsRunning = false;
+    
     public static boolean lightsTurn = true;
 
     public static Cell[][] CellList;
@@ -47,9 +56,9 @@ public class Chess {
      */
     public static void main(String[] args) {
 
-        lightTimer = new Timer(300, true);
+        lightTimer = new Timer(4, 59, true);
 
-        blackTimer = new Timer(300, false);
+        blackTimer = new Timer(4, 59, false);
 
         StyleManager.setTheme("Default");
 
@@ -60,8 +69,13 @@ public class Chess {
     }
 
     public static void PlayGame() {
+        
         JFrame frame = new GameFrame();
-
+        
+        frame.setSize(GAMEFRAME_WIDTH, GAMEFRAME_HIEGHT);
+        
+        frame.setLocationRelativeTo(null);
+        
         CellList = new Cell[board.rows()][board.columns()];
 
         labelWidth = (int) GAMEPANEL_SIZE / board.columns();
@@ -149,4 +163,8 @@ public class Chess {
     private final static int GAMEPANEL_SIZE = 720;
 
     public static final int BOARD_SIZE = 8;
+    
+    private final static int GAMEFRAME_WIDTH = 1080;
+    
+    private final static int GAMEFRAME_HIEGHT = 756; // what??? why??
 }

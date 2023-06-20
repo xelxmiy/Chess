@@ -1,4 +1,4 @@
-package chessnt.LogicClasses;
+package chess.LogicClasses;
 /**
  * @author Adam Belski
  * @version 1.1.0

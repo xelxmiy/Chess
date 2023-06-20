@@ -2,11 +2,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package chessnt.chesspieces;
+package chess.chesspieces;
 
 import chess.Chess;
-import chessnt.LogicClasses.Piece;
-import chessnt.StyleClasses.StyleManager;
+import chess.LogicClasses.Piece;
+import chess.StyleClasses.StyleManager;
 
 /**
  * Knight that moves like an L 

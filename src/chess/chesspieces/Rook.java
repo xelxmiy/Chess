@@ -1,8 +1,8 @@
-package chessnt.chesspieces;
+package chess.chesspieces;
 
 import chess.Chess;
-import chessnt.LogicClasses.Piece;
-import chessnt.StyleClasses.StyleManager;
+import chess.LogicClasses.Piece;
+import chess.StyleClasses.StyleManager;
 
 /**
  * Rook Class moves in the same file or row

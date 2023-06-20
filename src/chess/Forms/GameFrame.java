@@ -1,11 +1,12 @@
-package chessnt.Forms;
+package chess.Forms;
 
-import chessnt.StyleClasses.StyleManager;
+import chess.StyleClasses.StyleManager;
 import java.awt.Component;
 import java.awt.Image;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import chess.Chess;
 
 /** The Place where the magic happens. This frame contains the board the game is
  * played on. 
@@ -21,9 +22,7 @@ public class GameFrame extends javax.swing.JFrame {
      */
     public GameFrame() {
         initComponents();
-        this.setLocationRelativeTo(null);
         setIconImage();
-        
     }
 
     /**
@@ -35,56 +34,49 @@ public class GameFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        backgroundPanel = new javax.swing.JPanel();
         gameboardPanel = new javax.swing.JPanel();
+        backgroundPanel = new javax.swing.JPanel();
+        blackTimer = new javax.swing.JLabel();
+        whiteTimer = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Chessn't");
+        setTitle("Chess");
         setBackground(StyleManager.jPanelAccents);
         setName("MainFrame"); // NOI18N
-
-        backgroundPanel.setBackground(StyleManager.jPanelExtra
-        );
+        setResizable(false);
+        getContentPane().setLayout(null);
 
         gameboardPanel.setBackground(StyleManager.jPanelBackground);
         gameboardPanel.setBorder(StyleManager.BORDER);
         gameboardPanel.setForeground(StyleManager.WHITE
         );
+        gameboardPanel.setLayout(null);
+        getContentPane().add(gameboardPanel);
+        gameboardPanel.setBounds(0, 0, 720, 720);
 
-        javax.swing.GroupLayout gameboardPanelLayout = new javax.swing.GroupLayout(gameboardPanel);
-        gameboardPanel.setLayout(gameboardPanelLayout);
-        gameboardPanelLayout.setHorizontalGroup(
-            gameboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
-        );
-        gameboardPanelLayout.setVerticalGroup(
-            gameboardPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
-        );
+        backgroundPanel.setBackground(StyleManager.jPanelBackground);
+        backgroundPanel.setLayout(null);
 
-        javax.swing.GroupLayout backgroundPanelLayout = new javax.swing.GroupLayout(backgroundPanel);
-        backgroundPanel.setLayout(backgroundPanelLayout);
-        backgroundPanelLayout.setHorizontalGroup(
-            backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(backgroundPanelLayout.createSequentialGroup()
-                .addComponent(gameboardPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 360, Short.MAX_VALUE))
-        );
-        backgroundPanelLayout.setVerticalGroup(
-            backgroundPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(gameboardPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        blackTimer.setBackground(StyleManager.darkCell);
+        blackTimer.setFont(StyleManager.TITLE_FONT);
+        blackTimer.setForeground(StyleManager.WHITE);
+        blackTimer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        blackTimer.setText(Chess.blackTimer.minsCounter + ":" + Chess.blackTimer.secondsCounter);
+        blackTimer.setBorder(StyleManager.BORDER);
+        backgroundPanel.add(blackTimer);
+        blackTimer.setBounds(0, 0, 360, 158);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(backgroundPanel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(backgroundPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
+        whiteTimer.setBackground(StyleManager.lightCell);
+        whiteTimer.setFont(StyleManager.TITLE_FONT);
+        whiteTimer.setForeground(StyleManager.WHITE);
+        whiteTimer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        whiteTimer.setText(Chess.lightTimer.minsCounter + ":" + Chess.lightTimer.secondsCounter);
+        whiteTimer.setBorder(StyleManager.BORDER);
+        backgroundPanel.add(whiteTimer);
+        whiteTimer.setBounds(0, 560, 360, 158);
+
+        getContentPane().add(backgroundPanel);
+        backgroundPanel.setBounds(720, 0, 360, 720);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -126,7 +118,9 @@ public class GameFrame extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
+    private static javax.swing.JLabel blackTimer;
     public static javax.swing.JPanel gameboardPanel;
+    private static javax.swing.JLabel whiteTimer;
     // End of variables declaration//GEN-END:variables
         /** give <code>gamePabel</code> a component
      * 
@@ -147,5 +141,10 @@ public class GameFrame extends javax.swing.JFrame {
             this.setIconImage(iconImage);
         } catch (IOException ex) {
         }
+    }
+    
+    public static void UpdateTimer() {
+        whiteTimer.setText(Chess.lightTimer.minsCounter + ":" + Chess.lightTimer.secondsCounter);
+        blackTimer.setText(Chess.blackTimer.minsCounter + ":" + Chess.blackTimer.secondsCounter);
     }
 }

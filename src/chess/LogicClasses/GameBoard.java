@@ -1,4 +1,4 @@
-package chessnt.LogicClasses;
+package chess.LogicClasses;
 
 import chess.Chess;
 

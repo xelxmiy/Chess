@@ -1,4 +1,4 @@
-package chessnt.LogicClasses;
+package chess.LogicClasses;
 
 import chess.Chess;
 import javax.swing.ImageIcon;
@@ -67,6 +67,8 @@ public abstract class Piece {
             column = moveColumn;
 
             Chess.lightsTurn = !Chess.lightsTurn;
+            
+            Chess.gameIsRunning = true;
         }
 
         Chess.currentlySelectedPiece = null;
