@@ -1,4 +1,4 @@
-package chessnt;
+package chessnt.Forms;
 
 import chessnt.StyleClasses.StyleManager;
 import java.awt.Component;

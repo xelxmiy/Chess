@@ -3,7 +3,6 @@ package chessnt.LogicClasses;
  * @author Adam Belski
  * @version 1.1.0
  * @since 26-Apr-2023
- *
  */
 public class Matrix {
 

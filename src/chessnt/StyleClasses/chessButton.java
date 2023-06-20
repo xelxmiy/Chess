@@ -1,4 +1,8 @@
- package chessnt.StyleClasses;
+package chessnt.StyleClasses;
+
+import java.awt.Image;
+import java.awt.image.BufferedImage;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.event.ChangeEvent;
 
@@ -18,9 +22,9 @@ public class chessButton extends JButton {
         setFocusPainted(false);
         setContentAreaFilled(false);
         setOpaque(true);
-        
+
         setBorder(StyleManager.BORDER);
-        
+
         setBackground(StyleManager.chessButtonUnpressed);
         setForeground(StyleManager.WHITE);
         setFont(StyleManager.LABLE_FONT);
@@ -34,5 +38,29 @@ public class chessButton extends JButton {
                 setBackground(StyleManager.chessButtonUnpressed);
             }
         });
+    }
+
+    /**
+     * sets the image for the current component. a complicated dance of
+     * converting one image type to another. "adapted" from
+     * https://stackoverflow.com/a/16345968
+     *
+     * @param imgIcon imageIcon to set this LifeLabel to.
+     */
+    public void setImage(ImageIcon imgIcon) {
+        try {
+            BufferedImage img;
+            Image image = imgIcon.getImage();
+            img = (BufferedImage) image;
+            try {
+                Image dimg = img.getScaledInstance(this.getWidth(), this.getHeight(),
+                        Image.SCALE_SMOOTH);
+                ImageIcon imageIcon = new ImageIcon(dimg);
+                this.setIcon(imageIcon);
+            } catch (IllegalArgumentException IAE) {
+            }
+        } catch (Exception e) {
+            System.out.println(e.toString());
+        }
     }
 }
