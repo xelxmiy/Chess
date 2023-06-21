@@ -12,7 +12,7 @@ import chess.StyleClasses.StyleManager;
  * @version 1.1.0
  */
 public class Bishop extends Piece {
-
+   
     public Bishop(int row, int column, boolean isWhite) {
         super(row, column, isWhite);
 

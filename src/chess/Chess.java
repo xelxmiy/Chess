@@ -56,9 +56,9 @@ public class Chess {
      */
     public static void main(String[] args) {
 
-        lightTimer = new Timer(4, 59, true);
+        lightTimer = new Timer(5, 00, true);
 
-        blackTimer = new Timer(4, 59, false);
+        blackTimer = new Timer(5, 00, false);
 
         StyleManager.setTheme("Default");
 

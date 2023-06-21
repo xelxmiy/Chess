@@ -47,13 +47,14 @@ public final class Timer {
      * @param isLight
      */
     public void makeNewTimer(boolean isLight) {
+        //todo: fix this monstrosity of nesting, it makes a curve!
         timerThread = new Thread(() -> {
             while (true) {
                 if (Chess.gameIsRunning) {
                     if (Chess.lightsTurn == isLight) {
                         if (secondsCounter == 0) {
                             minsCounter--;
-                            secondsCounter = 60;
+                            secondsCounter = 59;
                         } else {
                             secondsCounter--;
                         }
