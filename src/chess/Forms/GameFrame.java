@@ -7,22 +7,29 @@ import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import chess.Chess;
+import chess.StyleClasses.ChessButton;
+import chess.chesspieces.Bishop;
+import chess.chesspieces.Knight;
+import chess.chesspieces.Queen;
+import chess.chesspieces.Rook;
 
-/** The Place where the magic happens. This frame contains the board the game is
- * played on. 
- * 
+/**
+ * The Place where the magic happens. This frame contains the board the game is
+ * played on.
+ *
  * @author Adam Belski
  * @since 07-Jun-2023
  * @version 1.0.2
  */
 public class GameFrame extends javax.swing.JFrame {
-    
+
     /**
      * Creates new form GameFrame
      */
     public GameFrame() {
         initComponents();
         setIconImage();
+        initPromotionButtons();
     }
 
     /**
@@ -36,8 +43,10 @@ public class GameFrame extends javax.swing.JFrame {
 
         gameboardPanel = new javax.swing.JPanel();
         backgroundPanel = new javax.swing.JPanel();
-        blackTimer = new javax.swing.JLabel();
-        whiteTimer = new javax.swing.JLabel();
+        darkTimer = new javax.swing.JLabel();
+        lightTimer = new javax.swing.JLabel();
+        startButton = new ChessButton()
+        ;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Chess");
@@ -57,23 +66,36 @@ public class GameFrame extends javax.swing.JFrame {
         backgroundPanel.setBackground(StyleManager.jPanelBackground);
         backgroundPanel.setLayout(null);
 
-        blackTimer.setBackground(StyleManager.darkCell);
-        blackTimer.setFont(StyleManager.TITLE_FONT);
-        blackTimer.setForeground(StyleManager.WHITE);
-        blackTimer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        blackTimer.setText(Chess.blackTimer.minsCounter + ":" + Chess.blackTimer.secondsCounter);
-        blackTimer.setBorder(StyleManager.BORDER);
-        backgroundPanel.add(blackTimer);
-        blackTimer.setBounds(0, 0, 360, 158);
+        darkTimer.setBackground(StyleManager.darkCell);
+        darkTimer.setFont(StyleManager.TITLE_FONT);
+        darkTimer.setForeground(StyleManager.WHITE);
+        darkTimer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        darkTimer.setText(Chess.blackTimer.minsCounter + ":" + Chess.blackTimer.secondsCounter);
+        darkTimer.setBorder(StyleManager.BORDER);
+        darkTimer.setOpaque(true);
+        backgroundPanel.add(darkTimer);
+        darkTimer.setBounds(0, 0, 360, 160);
 
-        whiteTimer.setBackground(StyleManager.lightCell);
-        whiteTimer.setFont(StyleManager.TITLE_FONT);
-        whiteTimer.setForeground(StyleManager.WHITE);
-        whiteTimer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        whiteTimer.setText(Chess.lightTimer.minsCounter + ":" + Chess.lightTimer.secondsCounter);
-        whiteTimer.setBorder(StyleManager.BORDER);
-        backgroundPanel.add(whiteTimer);
-        whiteTimer.setBounds(0, 560, 360, 158);
+        lightTimer.setBackground(StyleManager.lightCell);
+        lightTimer.setFont(StyleManager.TITLE_FONT);
+        lightTimer.setForeground(StyleManager.WHITE);
+        lightTimer.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lightTimer.setText(Chess.lightTimer.minsCounter + ":" + Chess.lightTimer.secondsCounter);
+        lightTimer.setBorder(StyleManager.BORDER);
+        lightTimer.setOpaque(true);
+        backgroundPanel.add(lightTimer);
+        lightTimer.setBounds(0, 560, 360, 160);
+
+        startButton.setBackground(StyleManager.chessButtonUnpressed);
+        startButton.setForeground(StyleManager.WHITE);
+        startButton.setText("Start!");
+        startButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startButtonActionPerformed(evt);
+            }
+        });
+        backgroundPanel.add(startButton);
+        startButton.setBounds(0, 280, 360, 160);
 
         getContentPane().add(backgroundPanel);
         backgroundPanel.setBounds(720, 0, 360, 720);
@@ -81,55 +103,37 @@ public class GameFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(GameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(GameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(GameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(GameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
+        Chess.gameIsRunning = true;
+        startButton.setVisible(false);
+    }//GEN-LAST:event_startButtonActionPerformed
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new GameFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel backgroundPanel;
-    private static javax.swing.JLabel blackTimer;
+    private static javax.swing.JLabel darkTimer;
     public static javax.swing.JPanel gameboardPanel;
-    private static javax.swing.JLabel whiteTimer;
+    private static javax.swing.JLabel lightTimer;
+    private javax.swing.JButton startButton;
     // End of variables declaration//GEN-END:variables
-        /** give <code>gamePabel</code> a component
-     * 
+    public static ChessButton queenButton;
+    public static ChessButton rookButton;
+    public static ChessButton knightButton;
+    public static ChessButton bishopButton;
+
+    public static int pRow;
+    public static int pColumn;
+
+    /**
+     * give <code>gamePabel</code> a component
+     *
      * @param c component to add to the gamePanel
      */
     public static void giveComponentToGameBoardPanel(Component c) {
         gameboardPanel.add(c);
     }
-        /**
+
+    /**
      * sets the icon for the JFrame
      */
     private void setIconImage() {
@@ -142,9 +146,105 @@ public class GameFrame extends javax.swing.JFrame {
         } catch (IOException ex) {
         }
     }
-    
+
     public static void UpdateTimer() {
-        whiteTimer.setText(Chess.lightTimer.minsCounter + ":" + Chess.lightTimer.secondsCounter);
-        blackTimer.setText(Chess.blackTimer.minsCounter + ":" + Chess.blackTimer.secondsCounter);
+        lightTimer.setText(Chess.lightTimer.minsCounter + ":" + Chess.lightTimer.secondsCounter);
+        darkTimer.setText(Chess.blackTimer.minsCounter + ":" + Chess.blackTimer.secondsCounter);
+    }
+
+    private void initPromotionButtons() {
+        queenButton = new ChessButton();
+        rookButton = new ChessButton();
+        knightButton = new ChessButton();
+        bishopButton = new ChessButton();
+
+        queenButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                queenButtonActionPreformed();
+            }
+        });
+
+        backgroundPanel.add(queenButton);
+        queenButton.setBounds(0, 160, 180, 200);
+        queenButton.setImage(!(pRow == 7) ? StyleManager.lightQueenImg
+                : StyleManager.darkQueenImg);
+        queenButton.setVisible(false);
+
+        rookButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rookButtonActionPreformed();
+            }
+        });
+
+        backgroundPanel.add(rookButton);
+        rookButton.setBounds(180, 160, 180, 200);
+        rookButton.setImage(!(pRow == 7) ? StyleManager.lightRookImg
+                : StyleManager.darkRookImg);
+        rookButton.setVisible(false);
+
+        bishopButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bishopButtonActionPreformed();
+            }
+
+        });
+
+        backgroundPanel.add(bishopButton);
+        bishopButton.setBounds(180, 360, 180, 200);
+        bishopButton.setImage(!(pRow == 7) ? StyleManager.lightBishopImg
+                : StyleManager.darkBishopImg);
+        bishopButton.setVisible(false);
+        knightButton.addActionListener(new java.awt.event.ActionListener() {
+            @Override
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                knightButtonActionPreformed();
+            }
+        });
+
+        backgroundPanel.add(knightButton);
+        knightButton.setBounds(0, 360, 180, 200);
+        knightButton.setImage(!(pRow == 7) ? StyleManager.lightKnightImg
+                : StyleManager.darkKnightImg);
+        knightButton.setVisible(false);
+    }
+
+    private void queenButtonActionPreformed() {
+        Chess.board.set(pRow, pColumn, new Queen(pRow, pColumn, !(pRow == 7)));
+        makeButtonsInvisble();
+    }
+
+    private void rookButtonActionPreformed() {
+        Chess.board.set(pRow, pColumn, new Rook(pRow, pColumn, !(pRow == 7)));
+        makeButtonsInvisble();
+    }
+
+    private void bishopButtonActionPreformed() {
+        Chess.board.set(pRow, pColumn, new Bishop(pRow, pColumn, !(pRow == 7)));
+        makeButtonsInvisble();
+    }
+
+    private void knightButtonActionPreformed() {
+        Chess.board.set(pRow, pColumn, new Knight(pRow, pColumn, !(pRow == 7)));
+        makeButtonsInvisble();
+    }
+
+    private void makeButtonsInvisble() {
+        queenButton.setVisible(false);
+        rookButton.setVisible(false);
+        bishopButton.setVisible(false);
+        knightButton.setVisible(false);
+        Chess.gameIsRunning = true;
+    }
+    
+    public static void makePromotionButtonsVisible(int pRow, int pColumn) {
+        GameFrame.pRow = pRow;
+        GameFrame.pColumn = pColumn;
+        queenButton.setVisible(true);
+        rookButton.setVisible(true);
+        bishopButton.setVisible(true);
+        knightButton.setVisible(true);
     }
 }

@@ -54,31 +54,32 @@ public class Cell extends JLabel {
      * currently selected piece
      */
     private void doMouseClick() {
-
-        if (Chess.currentlySelectedPiece == null) {
-            Chess.currentlySelectedPiece = Chess.board.get(row, column);
-            if (Chess.currentlySelectedPiece != null) {
-                if (Chess.lightsTurn == Chess.currentlySelectedPiece.isLight) {
-                    this.setBorder(StyleManager.borderSelected);
-                } else {
-                    Chess.currentlySelectedPiece = null;
+        if (Chess.gameIsRunning) {
+            if (Chess.currentlySelectedPiece == null) {
+                Chess.currentlySelectedPiece = Chess.board.get(row, column);
+                if (Chess.currentlySelectedPiece != null) {
+                    if (Chess.lightsTurn == Chess.currentlySelectedPiece.isLight) {
+                        this.setBorder(StyleManager.borderSelected);
+                    } else {
+                        Chess.currentlySelectedPiece = null;
+                    }
                 }
+                return;
             }
-            return;
-        }
 
-        int cspR = Chess.currentlySelectedPiece.row;
-        int cspC = Chess.currentlySelectedPiece.column;
+            int cspR = Chess.currentlySelectedPiece.row;
+            int cspC = Chess.currentlySelectedPiece.column;
 
-        Chess.CellList[cspR][cspC].setBorder(null);
-        if (Chess.lightsTurn == Chess.currentlySelectedPiece.isLight) {
-            Chess.currentlySelectedPiece.Move(row, column);
+            Chess.CellList[cspR][cspC].setBorder(null);
+            if (Chess.lightsTurn == Chess.currentlySelectedPiece.isLight) {
+                Chess.currentlySelectedPiece.move(row, column);
+            }
         }
     }
 
     /**
-     * sets the image for the current component. a complicated dance of converting
-     * one image type to another. "adapted" from
+     * sets the image for the current component. a complicated dance of
+     * converting one image type to another. "adapted" from
      * https://stackoverflow.com/a/16345968
      *
      * @param imgIcon imageIcon to set this LifeLabel to.

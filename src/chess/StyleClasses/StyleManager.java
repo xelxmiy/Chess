@@ -66,7 +66,7 @@ public class StyleManager {
      * this color is used for LifeLabels representing black cells
      */
     public static Color darkCell = new Color(25, 25, 25);
-
+    
     /**
      * the top color for selected cells
      */
