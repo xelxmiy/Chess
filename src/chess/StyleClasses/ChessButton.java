@@ -13,12 +13,12 @@ import javax.swing.event.ChangeEvent;
  */
 // stole this whole class from https://stackoverflow.com/a/23958880 lol
 // button color when it was pressed was ugly
-public class chessButton extends JButton {
+public class ChessButton extends JButton {
 
     /**
      * constructs a JButton with custom colors
      */
-    public chessButton() {
+    public ChessButton() {
         setFocusPainted(false);
         setContentAreaFilled(false);
         setOpaque(true);
