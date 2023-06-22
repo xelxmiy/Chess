@@ -9,7 +9,7 @@ import chess.StyleClasses.StyleManager;
  *
  * @author Adam Belski
  * @since 17-Jun-2023
- * @version 1.0.0
+ * @version 1.2.1
  */
 public class King extends Piece {
 

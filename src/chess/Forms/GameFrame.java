@@ -147,11 +147,18 @@ public class GameFrame extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * updates the timers
+     */
     public static void UpdateTimer() {
         lightTimer.setText(Chess.lightTimer.minsCounter + ":" + Chess.lightTimer.secondsCounter);
         darkTimer.setText(Chess.blackTimer.minsCounter + ":" + Chess.blackTimer.secondsCounter);
     }
 
+    /**
+     * Initializes the promotion buttons when a pawn reaches the enemies back
+     * row!
+     */
     private void initPromotionButtons() {
         queenButton = new ChessButton();
         rookButton = new ChessButton();
@@ -211,26 +218,39 @@ public class GameFrame extends javax.swing.JFrame {
         knightButton.setVisible(false);
     }
 
+    /**
+     * preformed when the queen's promotion button is pressed
+     */
     private void queenButtonActionPreformed() {
         Chess.board.set(pRow, pColumn, new Queen(pRow, pColumn, !(pRow == 7)));
         makeButtonsInvisble();
     }
 
+    /**
+     * preformed when the rook's promotion button is pressed
+     */
     private void rookButtonActionPreformed() {
         Chess.board.set(pRow, pColumn, new Rook(pRow, pColumn, !(pRow == 7)));
         makeButtonsInvisble();
     }
 
+    /**
+     * preformed when the bishop's promotion button is pressed
+     */
     private void bishopButtonActionPreformed() {
         Chess.board.set(pRow, pColumn, new Bishop(pRow, pColumn, !(pRow == 7)));
         makeButtonsInvisble();
     }
-
+    /**
+     * preformed when the knight's promotion button is pressed
+     */
     private void knightButtonActionPreformed() {
         Chess.board.set(pRow, pColumn, new Knight(pRow, pColumn, !(pRow == 7)));
         makeButtonsInvisble();
     }
-
+    /**
+     * hides the promotion buttons once one has been pressed
+     */
     private void makeButtonsInvisble() {
         queenButton.setVisible(false);
         rookButton.setVisible(false);
@@ -238,7 +258,7 @@ public class GameFrame extends javax.swing.JFrame {
         knightButton.setVisible(false);
         Chess.gameIsRunning = true;
     }
-    
+
     public static void makePromotionButtonsVisible(int pRow, int pColumn) {
         GameFrame.pRow = pRow;
         GameFrame.pColumn = pColumn;

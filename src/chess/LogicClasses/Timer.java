@@ -12,7 +12,7 @@ import chess.Forms.GameFrame;
  *
  * @author Adam Belski
  * @since 19-Jun-2023
- * @version 1.0.0
+ * @version 1.0.1
  */
 public final class Timer {
 
@@ -22,7 +22,7 @@ public final class Timer {
     public int secondsCounter;
 
     /**
-     * how many mins are left on the timer
+     * how many minutes are left on the timer
      */
     public int minsCounter; // i can't spell minuites m
 

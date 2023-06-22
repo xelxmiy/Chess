@@ -26,7 +26,7 @@ import chess.StyleClasses.StyleManager;
  * this is because I am lazy and don't want to make a chess AI.
  *
  * @author Adam Belski
- * @version 1.1.1
+ * @version 1.1.3
  * @since 5-Jun-2023
  */
 public class Chess {
@@ -67,7 +67,9 @@ public class Chess {
         }
         PlayGame();
     }
-
+    /**
+     * Initiates the game screen
+     */
     public static void PlayGame() {
 
         JFrame frame = new GameFrame();
@@ -101,6 +103,7 @@ public class Chess {
      * @param c current column
      */
     private static void makePieces(int r, int c) {
+        //if statement hell
         if (r == LIGHT_FRONTROW) {
             Pawn pawn = new Pawn(r, c, true);
             board.set(r, c, pawn);
@@ -117,30 +120,30 @@ public class Chess {
             Rook rook = new Rook(r, c, true);
             board.set(r, c, rook);
         }
-//        if (r == DARK_BACKROW && (c == 1 || c == 6)) {
-//            Knight knight = new Knight(r, c, false);
-//            board.set(r, c, knight);
-//        }
-//        if (r == LIGHT_BACKROW && (c == 1 || c == 6)) {
-//            Knight knight = new Knight(r, c, true);
-//            board.set(r, c, knight);
-//        }
-//        if (r == DARK_BACKROW && (c == 2 || c == 5)) {
-//            Bishop bishop = new Bishop(r, c, false);
-//            board.set(r, c, bishop);
-//        }
-//        if (r == LIGHT_BACKROW && (c == 2 || c == 5)) {
-//            Bishop bishop = new Bishop(r, c, true);
-//            board.set(r, c, bishop);
-//        }
-//        if (r == DARK_BACKROW && (c == 3)) {
-//            Queen queen = new Queen(r, c, false);
-//            board.set(r, c, queen);
-//        }
-//        if (r == LIGHT_BACKROW && (c == 3)) {
-//            Queen queen = new Queen(r, c, true);
-//            board.set(r, c, queen);
-//        }
+        if (r == DARK_BACKROW && (c == 1 || c == 6)) {
+            Knight knight = new Knight(r, c, false);
+            board.set(r, c, knight);
+        }
+        if (r == LIGHT_BACKROW && (c == 1 || c == 6)) {
+            Knight knight = new Knight(r, c, true);
+            board.set(r, c, knight);
+        }
+        if (r == DARK_BACKROW && (c == 2 || c == 5)) {
+            Bishop bishop = new Bishop(r, c, false);
+            board.set(r, c, bishop);
+        }
+        if (r == LIGHT_BACKROW && (c == 2 || c == 5)) {
+            Bishop bishop = new Bishop(r, c, true);
+            board.set(r, c, bishop);
+        }
+        if (r == DARK_BACKROW && (c == 3)) {
+            Queen queen = new Queen(r, c, false);
+            board.set(r, c, queen);
+        }
+        if (r == LIGHT_BACKROW && (c == 3)) {
+            Queen queen = new Queen(r, c, true);
+            board.set(r, c, queen);
+        }
         if (r == DARK_BACKROW && (c == 4)) {
             King king = new King(r, c, false);
             board.set(r, c, king);
