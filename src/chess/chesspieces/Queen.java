@@ -1,8 +1,8 @@
-package chessnt.chesspieces;
+package chess.chesspieces;
 
-import chessnt.Chess;
-import chessnt.LogicClasses.Piece;
-import chessnt.StyleClasses.StyleManager;
+import chess.Chess;
+import chess.LogicClasses.Piece;
+import chess.StyleClasses.StyleManager;
 
 /**
  * Queen piece that moves like a combination of the rook and bishop

@@ -1,8 +1,8 @@
-package chessnt.chesspieces;
+package chess.chesspieces;
 
-import chessnt.Chess;
-import chessnt.LogicClasses.Piece;
-import chessnt.StyleClasses.StyleManager;
+import chess.Chess;
+import chess.LogicClasses.Piece;
+import chess.StyleClasses.StyleManager;
 
 /**
  * Bishop that moves on the diagonals
@@ -12,7 +12,7 @@ import chessnt.StyleClasses.StyleManager;
  * @version 1.1.0
  */
 public class Bishop extends Piece {
-
+   
     public Bishop(int row, int column, boolean isWhite) {
         super(row, column, isWhite);
 

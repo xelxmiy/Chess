@@ -1,11 +1,19 @@
 /** Required package class namespace */
-package chessnt;
+package chess;
 
+import chess.LogicClasses.GameBoard;
+import chess.LogicClasses.Timer;
+import chess.LogicClasses.Piece;
+import chess.chesspieces.Rook;
+import chess.chesspieces.Knight;
+import chess.chesspieces.King;
+import chess.chesspieces.Pawn;
+import chess.chesspieces.Bishop;
+import chess.chesspieces.Queen;
+import chess.Forms.GameFrame;
 import javax.swing.JFrame;
-import chessnt.LogicClasses.*;
-import chessnt.LogicClasses.Cell;
-import chessnt.StyleClasses.StyleManager;
-import chessnt.chesspieces.*;
+import chess.LogicClasses.Cell;
+import chess.StyleClasses.StyleManager;
 
 /**
  * Chessnt - Chessn't it's not chess! it's also not *not* chess. it's somewhere
@@ -18,12 +26,14 @@ import chessnt.chesspieces.*;
  * this is because I am lazy and don't want to make a chess AI.
  *
  * @author Adam Belski
- * @version 1.1.1
+ * @version 1.1.3
  * @since 5-Jun-2023
  */
 public class Chess {
 
     public static GameBoard board;
+
+    public static boolean gameIsRunning = false;
 
     public static boolean lightsTurn = true;
 
@@ -35,6 +45,10 @@ public class Chess {
 
     public static Piece currentlySelectedPiece;
 
+    public static Timer lightTimer;
+
+    public static Timer blackTimer;
+
     /**
      * Main method for the project
      *
@@ -42,16 +56,27 @@ public class Chess {
      */
     public static void main(String[] args) {
 
+        lightTimer = new Timer(5, 00, true);
+
+        blackTimer = new Timer(5, 00, false);
+
         StyleManager.setTheme("Default");
-        
+
         if (board == null) {
             board = new GameBoard(BOARD_SIZE);
         }
         PlayGame();
     }
-
+    /**
+     * Initiates the game screen
+     */
     public static void PlayGame() {
+
         JFrame frame = new GameFrame();
+
+        frame.setSize(GAMEFRAME_WIDTH, GAMEFRAME_HIEGHT);
+
+        frame.setLocationRelativeTo(null);
 
         CellList = new Cell[board.rows()][board.columns()];
 
@@ -78,6 +103,7 @@ public class Chess {
      * @param c current column
      */
     private static void makePieces(int r, int c) {
+        //if statement hell
         if (r == LIGHT_FRONTROW) {
             Pawn pawn = new Pawn(r, c, true);
             board.set(r, c, pawn);
@@ -129,15 +155,19 @@ public class Chess {
     }
 
     /* Final  Variables */
-    private static final int LIGHT_BACKROW = 7;
+    public static final int LIGHT_BACKROW = 7;
 
     private static final int LIGHT_FRONTROW = 6;
 
-    private static final int DARK_BACKROW = 0;
+    public static final int DARK_BACKROW = 0;
 
     private static final int DARK_FRONTROW = 1;
 
-    private final static int GAMEPANEL_SIZE = 720;
+    private static final int GAMEPANEL_SIZE = 720;
 
     public static final int BOARD_SIZE = 8;
+
+    private static final int GAMEFRAME_WIDTH = 1080;
+
+    private static final int GAMEFRAME_HIEGHT = 756; // what??? why??
 }

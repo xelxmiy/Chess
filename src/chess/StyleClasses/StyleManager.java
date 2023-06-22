@@ -1,4 +1,4 @@
-package chessnt.StyleClasses;
+package chess.StyleClasses;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -15,7 +15,7 @@ import javax.swing.border.Border;
  *
  * @author Adam Belski
  * @since 07-Jun-2023
- * @version 1.1.0
+ * @version 1.1.1
  */
 public class StyleManager {
 
@@ -241,18 +241,7 @@ public class StyleManager {
 
                 pieceImages[i] = new ImageIcon(image);
             }
-            /*
-            I looked for so long for a better way to this.
-            it is currently 1 AM as i'm writing this. I give up.
-            unfrotunatly, this is my best work.
-            i wanted to have each style only set the paths for each image
-            and then a for loops iterated through that and using arrays sets
-            each piece's image individually, unfortunatly setting the pieces
-            only sets that in the position of the array, and i couldn't find a 
-            way to access the thing inside. i may or may not ask about this
-            depending on if i remember. but this could *be* better, i just don't 
-            know if *I* can make it better.
-             */
+            //you'd think you could just iterate through this, i tried! it didn't work!
             lightPawnImg = pieceImages[0];
             darkPawnImg = pieceImages[1];
             lightKnightImg = pieceImages[2];
@@ -267,9 +256,6 @@ public class StyleManager {
             darkKingImg = pieceImages[11];
 
         } catch (IOException ex) {
-            //this isn't proper error checking, too bad!
-            System.out.println(ex.toString());
         }
-
     }
 }

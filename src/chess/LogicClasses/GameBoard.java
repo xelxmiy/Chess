@@ -1,6 +1,6 @@
-package chessnt.LogicClasses;
+package chess.LogicClasses;
 
-import chessnt.Chess;
+import chess.Chess;
 
 /**
  * @author Adam Belski

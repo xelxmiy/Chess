@@ -1,6 +1,6 @@
-package chessnt.LogicClasses;
+package chess.LogicClasses;
 
-import chessnt.Chess;
+import chess.Chess;
 import javax.swing.ImageIcon;
 
 /**
@@ -35,6 +35,11 @@ public abstract class Piece {
     public ImageIcon pieceIcon;
 
     /**
+     * weather or not the given piece has moved
+     */
+    public boolean hasMoved = false;
+
+    /**
      * validates that the square the piece is moving to isn't the same color as
      * this piece and that it's a valid square for this piece to move to
      *
@@ -51,7 +56,7 @@ public abstract class Piece {
      * @param moveRow the row of the location to move the piece
      * @param moveColumn the column of the location to move the piece
      */
-    public void Move(int moveRow, int moveColumn) {
+    public void move(int moveRow, int moveColumn) {
 
         if (isValidMove(moveRow, moveColumn)) {
 
@@ -67,6 +72,9 @@ public abstract class Piece {
             column = moveColumn;
 
             Chess.lightsTurn = !Chess.lightsTurn;
+
+            hasMoved = true;
+
         }
 
         Chess.currentlySelectedPiece = null;

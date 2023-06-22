@@ -1,8 +1,9 @@
-package chessnt.chesspieces;
+package chess.chesspieces;
 
-import chessnt.Chess;
-import chessnt.LogicClasses.Piece;
-import chessnt.StyleClasses.StyleManager;
+import chess.Chess;
+import chess.Forms.GameFrame;
+import chess.LogicClasses.Piece;
+import chess.StyleClasses.StyleManager;
 
 /**
  * Pawn that moves forward and takes diagonally 1 square
@@ -19,17 +20,26 @@ public class Pawn extends Piece {
 
     public Pawn(int row, int column, boolean isWhite) {
         super(row, column, isWhite);
-        
+
         this.row = row;
         this.column = column;
 
         direction = isWhite ? -1 : 1;
-        
+
         startingRow = row;
-                
+
         this.pieceIcon = isWhite ? StyleManager.lightPawnImg : StyleManager.darkPawnImg;
-        
+
         Chess.CellList[row][column].setImage(pieceIcon);
+    }
+
+    @Override
+    public void move(int moveRow, int moveColumn) {
+        super.move(moveRow, moveColumn);
+        if (moveRow == 7 || moveRow == 0) {
+            Chess.gameIsRunning = false;
+            GameFrame.makePromotionButtonsVisible(moveRow, moveColumn);
+        }
     }
 
     @Override
@@ -38,7 +48,7 @@ public class Pawn extends Piece {
         // that a pawn only has two options to move (unless it's capturing) 
         //i'll just check them both (all 4?) manually 
         // update: this was a mistake.
-        
+
         //checks that the pawn isn't moving to the same square, skipping a turn.
         if (moveRow == row && moveColumn == column) {
             return false;
