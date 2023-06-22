@@ -35,6 +35,11 @@ public abstract class Piece {
     public ImageIcon pieceIcon;
 
     /**
+     * weather or not the given piece has moved
+     */
+    public boolean hasMoved = false;
+
+    /**
      * validates that the square the piece is moving to isn't the same color as
      * this piece and that it's a valid square for this piece to move to
      *
@@ -67,7 +72,9 @@ public abstract class Piece {
             column = moveColumn;
 
             Chess.lightsTurn = !Chess.lightsTurn;
-            
+
+            hasMoved = true;
+
         }
 
         Chess.currentlySelectedPiece = null;

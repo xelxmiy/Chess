@@ -19,14 +19,19 @@ public class Rook extends Piece {
         this.row = row;
         this.column = column;
 
-        this.pieceIcon = isWhite ?
-                StyleManager.lightRookImg : StyleManager.darkRookImg;
+        this.pieceIcon = isWhite
+                ? StyleManager.lightRookImg : StyleManager.darkRookImg;
 
         Chess.CellList[row][column].setImage(pieceIcon);
     }
 
     @Override
     public boolean isValidMove(int moveRow, int moveColumn) {
+        
+        if (King.isCastling) {
+            return true;
+        }
+
         //check to prevent the rook capturing one of it's own pieces
         if (Chess.board.get(moveRow, moveColumn) != null) {
             if (Chess.board.get(moveRow, moveColumn).isLight == isLight) {
